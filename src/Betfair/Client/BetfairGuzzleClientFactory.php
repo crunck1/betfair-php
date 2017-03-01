@@ -28,8 +28,11 @@ class BetfairGuzzleClientFactory
             $this->getConfigDescriptionArrayFromSpecificationDir($this->specificationDir, $options)
         );
 
-        $guzzleClient = new GuzzleClient($httpClient, $description, [
-            'response_locations' => ['response' => new ResponseLocation('response')], //custom json location
+        $guzzleClient = new GuzzleClient($httpClient, $description,
+                        new \GuzzleHttp\Command\Guzzle\Serializer($description, ['response' => new ResponseLocation('response')]),
+                        new \GuzzleHttp\Command\Guzzle\Deserializer($description,false, ['response' => new ResponseLocation('response')]),
+                        null, 
+                        ['response_locations' => ['response' => new ResponseLocation('response')], //custom json location
         ]);
 
         return new BetfairGuzzleClient($guzzleClient);

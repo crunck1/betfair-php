@@ -13,11 +13,11 @@ use Betfair\BetfairActionType;
 use Betfair\Credential\CredentialInterface;
 use Betfair\Exception\BetfairLoginException;
 use Betfair\Model\ParamInterface;
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Psr7\Response;
 
 class BetfairClient implements BetfairClientInterface
 {
-    const LOGIN_ENDPOINT = "https://identitysso.betfair.com/api/login";
+    const LOGIN_ENDPOINT = "https://identitysso.betfair.it/api/login";
 
     /** @var  CredentialInterface */
     protected $credential;
@@ -78,7 +78,9 @@ class BetfairClient implements BetfairClientInterface
     private function login()
     {
         /** @var Response $result */
+        error_log("betfairgc object=".print_r($this->betfairGuzzleClient,true));
         $result = $this->betfairGuzzleClient->betfairLogin($this->builtLoginArrayParameters());
+        error_log("rusult object=".print_r($result,true));
 
         if ($result && $result->getStatusCode() == 200) {
             return $this->extractSessionTokenFromResponseBody($result->getBody());

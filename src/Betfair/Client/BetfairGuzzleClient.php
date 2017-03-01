@@ -5,7 +5,7 @@ namespace Betfair\Client;
 class BetfairGuzzleClient
 {
 
-    private $guzzleClient;
+    public $guzzleClient;
 
     public function __construct($guzzleClient)
     {

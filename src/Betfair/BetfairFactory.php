@@ -13,6 +13,7 @@ class BetfairFactory
         $credential = new Credential($applicationId, $betfairUsername, $betfairPassword);
         $factory = new BetfairGuzzleClientFactory(__DIR__."/Resources/specification");
         $betfairClient = new BetfairClient($credential, $factory->createBetfairGuzzleClient($options));
+        
 
         $responseAdapter = null;
 

@@ -1,7 +1,7 @@
 operations:
     betfairLogin:
           httpMethod: POST
-          uri: "https://identitysso.betfair.com/api/login"
+          uri: "https://identitysso.betfair.it/api/login"
           responseModel: betfairLoginModel
           parameters:
               X-Application:
@@ -23,12 +23,12 @@ operations:
                   default: "application/x-www-form-urlencoded"
               username:
                   type: string
-                  location: postField
+                  location: formParam
                   required: true
                   sentAs: username
               password:
                   type: string
-                  location: postField
+                  location: formParam
                   required: true
                   sentAs: password
 models:
